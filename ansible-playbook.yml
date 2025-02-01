@@ -12,14 +12,14 @@
       ignore_errors: yes
 
     - name: remove comingsoon-image
-      command: docker rmi 02705198600/simple-webapp-img
+      command: docker rmi 002705198600/simple-webapp-img
       ignore_errors: yes
 
     - name: build docker image using the Dockerfile
-      command: docker build -t 02705198600/simple-webapp-img .
+      command: docker build -t 002705198600/simple-webapp-img .
 
     - name: Push Image to dockerhub
-      command: docker push 02705198600/simple-webapp-img
+      command: docker push 002705198600/simple-webapp-img
 
     - name: run container
-      command: docker run -d --name simple-webapp-container -p 5000:80 02705198600/simple-webapp-img
+      command: docker run -d --name simple-webapp-container -p 5000:80 002705198600/simple-webapp-img
