@@ -1,0 +1,24 @@
+pipeline {
+            agent any
+            environment {
+                		DOCKERHUB_CREDENTIALS=credentials('dockerhub')
+            }
+        
+            stages {
+                stage('Docker Login') {
+                    steps {
+                            sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+                    }
+                }
+                stage('Build & push Dockerfile') {
+                    steps {
+                      sh """
+                            rm -r simple-web-app/
+                            git clone "https://github.com/alibit/simple-web-app.git"
+                            cd simple-web-app/
+                            ansible-playbook ansible-playbook.yml
+                         """
+                    }
+            }
+            }
+}
