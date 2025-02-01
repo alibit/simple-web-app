@@ -13,9 +13,6 @@ pipeline {
                 stage('Build & push Dockerfile') {
                     steps {
                       sh """
-                            rm -r simple-web-app/
-                            git clone "https://github.com/alibit/simple-web-app.git"
-                            cd simple-web-app/
                             ansible-playbook ansible-playbook.yml
                          """
                     }
